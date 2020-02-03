@@ -1,0 +1,75 @@
+<header class="header">
+    <nav class="navbar navbar-expand-lg navbar-dark stick-top bg-dark">
+        <a class="navbar-brand ml-2 animated lightSpeedIn " href="{% url 'home' %}">CasianoPortfolio</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto border rounded">
+                <li class="nav-pills">
+                    <a class="nav-link {% if request.path == '/'%} active {% endif %}" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-pills">
+                    <a class="nav-link {% if request.path == '/about/' %} active {% endif %}" href="{% url 'about' %}">About</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav m-auto border rounded">
+                <li class="nav-pills">
+                    <a class="nav-link {% if request.path == '/blog/featured/'%} active {% endif %}" href="{% url 'blog-featured' %}">Featured</a>
+                </li>
+                <li class="nav-pills">
+                    <a class="nav-link {% if request.path == '/blog/articles/'%} active {% endif %}" href="{% url 'blog-articles' %}">Articles</a>
+                </li>
+                <li class="nav-pills">
+                    <a class="nav-link {% if request.path == '/blog/search/'%} active {% endif %}" href="{% url 'blog-search' %}">Search</a>
+                </li>
+                <li class="nav-pills">
+                    <a class="nav-link {% if request.path == '/blog/create/'%} active {% endif %}" href="{% url 'blog-create' %}">Create</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav m-auto border rounded">
+                <li class="nav-pills">
+                    <a class="nav-link {% if request.path == '/store/'%} active {% endif %}" href="{% url 'product-all' %}">Ecommerce</a>
+                </li>
+                <li class="nav-pills">
+                    <a class="nav-link {% if request.path == '/store/search/'%} active {% endif %}" href="{% url 'store-search' %}">Search</a>
+                </li>
+                <li class="nav-pills">
+                    <a class="nav-link {% if request.path == '/store/cart/' %} active {% endif %}" href="{% url 'store-cart' %}">Cart</a>
+                </li>
+
+
+
+            </ul>
+            <ul class="navbar-nav m-auto border rounded">
+                <li class="nav-pills">
+                    <a class="nav-link {% if request.path == '/todo/' %} active {% endif %}" href="{% url 'todo_view' %}">Todo</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto border rounded">
+
+                {% if user.is_authenticated %}
+                <li class="nav-pills">
+                    <a class="nav-link {% if '/user/profile/' in request.path %} active {% endif %}" href="{{ user.profile.get_absolute_url }}">Profile</a>
+                </li>
+                <li class="nav-pills mr-3">
+                    <a class="nav-link" href="{% url 'user-logout' %}">Logout</a>
+                </li>
+                {% else %}
+                <li class="nav-pills">
+                    <a class="nav-link {% if request.path == '/user/login/' %} active {% endif %}" href="{% url 'user-login' %}">Login</a>
+                </li>
+                <li class="nav-pills">
+                    <a class="nav-link {% if request.path == '/user/register/' %} active {% endif %}" href="{% url 'user-register' %}">Register</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    {% if messages %} {% for message in messages %}
+    <div class="alert btn-{{ message.tags }}">
+        {{ message }}
+    </div>
+    {% endfor %} {% endif %}
+
+</header>

@@ -1,0 +1,34 @@
+{% extends 'base/base.html' %} {% block content %}
+
+<div class="col-lg-6 offset-lg-3 jumbotron">
+    <div class="h2 mb-3">Todo List</div>
+    <form action="{% url 'todo_add' %}" method="POST" class='d-flex'>
+        {% csrf_token %}
+        <input type="text" placeholder="Enter a 'todo' task here" name="name" class="lead w-75 form-control">
+        <input type="submit" value="Add Todo" class="btn btn-success">
+    </form>
+    {% for object in todo_list %}
+    <hr class="my-0 py-1">
+    <div class="d-flex">
+        {% if object.completed %}
+        <a href="{{ object.make_incomplete_url}}" class="text-left w-50 h5 nav-link text-info"> <del>{{ object.name }}</del></a>
+        {% else %}
+        <a href="{{ object.get_completed_url }}" class="text-left w-50 h5 nav-link">{{ object.name }}</a> {% endif %}
+        <p class="w-25"> {{ object.timestamp|timesince}} ago </p>
+        <form action="{{ object.get_delete_url }}" method="POST">
+            {% csrf_token %}
+            <input type="submit" value="Delete" class="h3 btn btn-danger">
+        </form>
+    </div>
+    {% endfor %}
+    <hr>
+    <div class="d-flex justify-content-around m-2">
+        <form action="{% url 'todo_delete_completed' %}" method="POST"> {% csrf_token %}
+            <input type="submit" class="h3 btn btn-secondary" value="Delete Completed">
+        </form>
+        <form action="{% url 'todo_delete_all' %}" method="POST"> {% csrf_token %}
+            <input type="submit" class="h3 btn btn-danger" value="Delete All">
+        </form>
+    </div>
+</div>
+{% endblock content %}

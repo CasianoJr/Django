@@ -1,0 +1,33 @@
+{% extends 'base/base.html' %} {% block content %} {% load static %}
+
+<div class="jumbotron h1 my-2 text-center">
+    Page will be updated soon!
+</div>
+<div class="container my-4">
+    <div class="col-lg-8 offset-lg-2">
+        <table class="table">
+            <thead>
+                <th>Item</th>
+                <th>Quantity</th>
+                <th>Price</th>
+            </thead>
+            <tbody>
+                <td>Item Detail</td>
+                <td>
+                    <a href="#" class="btn badge-info mx-2">-</a> 1
+                    <a href="#" class="btn badge-info mx-2">+</a>
+                </td>
+                <td>Price of Item</td>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>Total: Total Price</td>
+                </tr>
+            </tfoot>
+        </table>
+        <a href="" " class=" w-100 btn btn-success ">Check Out</a>
+    </div>
+</div>
+{% endblock content %}

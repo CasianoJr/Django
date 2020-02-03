@@ -1,0 +1,22 @@
+{% extends 'base/base.html' %} {% block content %} {% load static %}
+
+<div class="container py-3">
+    <div class="row">
+        <div class="col">
+            <img src="{{item.image.url}}" class="img-fluid " alt="...">
+            <p class="lead">P {{item.price}}</p>
+            <p class="mt-1">Sold: {{item.sold}}</p>
+        </div>
+        <div class="col">
+            <p class="h5">{{item.name}}</p>
+            <div><span class="badge badge-{{item.get_label_bg_display}} m-1 ">{{item.get_label_display}}</span> </div>
+            <p class="h5">{{item.description}}</span>
+            </p>
+        </div>
+    </div>
+    <p class="h5">{{item.specification|safe}}</p>
+    <a href="" class="btn btn-danger">Add to Cart</a>
+    <a href="" class="btn btn-success">Check Out</a>
+</div>
+
+{% endblock content %}

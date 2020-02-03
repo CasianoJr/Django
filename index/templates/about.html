@@ -1,0 +1,10 @@
+{% extends 'base/base.html' %} {% block content %}
+
+<div class="col-lg-6 offset-lg-3">
+    <div class="jumbotron p-0 h2 text-center">About Page</div>
+    {% for me in admin %}
+    <div class="h5">{{ me.about|safe }}</div>
+
+    {% endfor %}
+</div>
+{% endblock content %}

@@ -1,0 +1,24 @@
+{% extends 'base/base.html' %} {% load static%} {% block content %} {% for me in admin %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3 jumbotron text-center">
+            <img class="p-2 shadow rounded-circle img-fluid" src="{{ me.photo.url }}" width="200" alt="">
+            <div class="font-weight-bold">Casiano Fernandez Jr.</div>
+            <div class="">Engineer - ECE, ECT</div>
+            <div class="my-3 nav-pills"><a href="#education">Education</a></div>
+            <div class="my-3"><a href="#experience">Experience</a></div>
+            <div class="my-3"><a href="#hobbies">Hobbies</a></div>
+            <div class="my-3"><a href="#contact_me">Contact Me</a></div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card lead p-4 m-2 shadow-lg">{{ me.intro|safe}}</div>
+            <div class="card m-2 p-4 shadow-lg" id="education">{{ me.education|safe }}</div>
+            <div class="card m-2 p-4 shadow-lg" id="experience">{{ me.experience|safe }}</div>
+            <div class="card m-2 p-4 shadow-lg" id="hobbies">{{ me.hobbies|safe }}</div>
+            <div class="card m-2 p-4 shadow-lg" id="contact_me">{{ me.contact_me|safe }}</div>
+        </div>
+
+        <div class="col-lg-3 "></div>
+    </div>
+</div>
+{% endfor %} {% endblock content %}
